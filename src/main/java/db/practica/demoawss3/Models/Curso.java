@@ -26,9 +26,14 @@ public class Curso {
     @NonNull
     private String titulo;
 
-    private String imagenPath;
+    private String fotoPerfil;
+
+    private String cedula;
 
     @Transient
     private String imagenUrl;
+
+    @Transient
+    private String cedulaUrl;
 
 }

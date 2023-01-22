@@ -23,14 +23,15 @@ public class CursoController {
     List<Curso> getAll(){
         return cursoRepository.findAll()
                 .stream()
-                .peek(curso -> curso.setImagenUrl(s3Service.getObjetcUrl(curso.getImagenPath())))
+                .peek(curso -> curso.setImagenUrl(s3Service.getObjetcUrl(curso.getImagenUrl())))
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     Curso crear(@RequestBody Curso curso) {
         cursoRepository.save(curso);
-        curso.setImagenUrl(s3Service.getObjetcUrl(curso.getImagenPath()));
+        curso.setImagenUrl(s3Service.getObjetcUrl(curso.getImagenUrl()));
+        curso.setCedulaUrl(s3Service.getObjetcUrl(curso.getCedulaUrl()));
         return curso;
     }
 }
